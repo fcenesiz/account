@@ -12,7 +12,7 @@ data class Transaction (
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     val id: String?,
 
-    val transactionType: TransactionType? = TransactionType.INITIAL
+    val transactionType: TransactionType? = TransactionType.INITIAL,
 
     val amount: BigDecimal?,
 
