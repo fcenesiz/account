@@ -16,9 +16,7 @@ import java.time.LocalDateTime
 class AccountService(
     private val accountRepository: AccountRepository,
     private val customerService: CustomerService,
-    private val transactionService: TransactionService,
-    private val converter: AccountDtoConverter,
-    private val clock: Clock
+    private val converter: AccountDtoConverter
 ){
 
     fun createAccount(createAccountRequest: CreateAccountRequest):AccountDto{
@@ -31,15 +29,13 @@ class AccountService(
         )
 
         if(createAccountRequest.initialCredit.compareTo(BigDecimal.ZERO) > 0){
-            val transaction = transactionService.initiateMoney(account, createAccountRequest.initialCredit)
+            //val transaction = transactionService.initiateMoney(account, createAccountRequest.initialCredit)
+            val transaction = Transaction(createAccountRequest.initialCredit, account)
             account.transactions.add(transaction)
         }
-        return converter.convert(accountRepository.save(account))
-    }
 
-    fun getLocalTimeNow(): LocalDateTime{
-        val instant = clock.instant()
-        return LocalDateTime.ofInstant(instant, Clock.systemDefaultZone().zone)
+        // transaction ı hiç kaydetmeden direct account u set etsek bile jpa kaydeder mi acaba?
+        return converter.convert(accountRepository.save(account))
     }
 
 }

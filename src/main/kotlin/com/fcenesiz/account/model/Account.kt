@@ -17,12 +17,12 @@ data class Account(
     val balance: BigDecimal? = BigDecimal.ZERO,
 
     val creationDate: LocalDateTime,
-
+    // cascade.all, kayıt işlemini yap demek
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "customer_id", nullable = false)
     val customer: Customer?,
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     val transactions: MutableSet<Transaction> = HashSet()
 ) {
 
@@ -43,4 +43,5 @@ data class Account(
     override fun toString(): String {
         return this::class.simpleName + "(id = $id , balance = $balance , creationDate = $creationDate )"
     }
+
 }

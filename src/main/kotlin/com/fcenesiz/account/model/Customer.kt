@@ -15,7 +15,7 @@ data class Customer(
     val surname: String?,
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
-    val accounts: MutableSet<Account>
+    val account: MutableSet<Account>
 ) {
 
     constructor(name: String?, surname: String?) :

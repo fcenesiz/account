@@ -19,7 +19,7 @@ data class Transaction(
 
     val transactionDate: LocalDateTime?,
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = [CascadeType.ALL])
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "account_id", nullable = false)
     val account: Account
 
@@ -54,7 +54,6 @@ data class Transaction(
         result = 31 * result + (transactionType?.hashCode() ?: 0)
         result = 31 * result + (amount?.hashCode() ?: 0)
         result = 31 * result + (transactionDate?.hashCode() ?: 0)
-        result = 31 * result + account.hashCode()
         return result
     }
 
