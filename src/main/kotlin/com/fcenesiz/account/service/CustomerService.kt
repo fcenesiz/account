@@ -11,7 +11,7 @@ class CustomerService(
 ) {
 
     // findById Optional bir fonksiyon, yani null olan durumlarda bizi kurtarır.
-    protected fun findCustomerById(id: String): Customer =
+    internal fun findCustomerById(id: String): Customer =
         customerRepository.findById(id).orElseThrow { CustomerNotFoundException("Customer could not found by id:$id") }
 
 }

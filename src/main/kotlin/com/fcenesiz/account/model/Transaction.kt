@@ -5,7 +5,8 @@ import java.math.BigDecimal
 import java.time.LocalDateTime
 import javax.persistence.*
 
-data class Transaction (
+@Entity
+data class Transaction(
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -16,13 +17,22 @@ data class Transaction (
 
     val amount: BigDecimal?,
 
-    val transactionDate : LocalDateTime?,
+    val transactionDate: LocalDateTime?,
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = [CascadeType.ALL])
     @JoinColumn(name = "account_id", nullable = false)
     val account: Account
 
-){
+) {
+
+    constructor(amount: BigDecimal, account: Account) :
+            this(
+                id = null,
+                amount = amount,
+                transactionDate = LocalDateTime.now(),
+                transactionType = TransactionType.INITIAL,
+                account = account
+            )
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -55,7 +65,7 @@ data class Transaction (
 
 }
 
-enum class TransactionType{
+enum class TransactionType {
     INITIAL, TRANSFER
 }
 
