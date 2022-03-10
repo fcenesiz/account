@@ -1,4 +1,4 @@
-# assigment restful-api
+# assignment restful-api
 
 build DockerFile<br>
 ```docker build . -t account:1.0```
