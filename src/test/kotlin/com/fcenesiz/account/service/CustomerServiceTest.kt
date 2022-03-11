@@ -24,9 +24,9 @@ import java.math.BigDecimal
 import java.time.LocalDateTime
 import java.util.*
 
-/*
-    private ve static methodların testi yazılmaz
- */
+
+// private ve static methodların testi yazılmaz
+// unit test
 @SpringBootTest
 internal class CustomerServiceTest {
     private final val version: String = "v1"
