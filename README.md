@@ -20,3 +20,5 @@
 - Spring 4.3 ve üzeri versiyonlarda, constructor değişkenleri<br>
 private final (w/ Kotlin private val) yapılırsa, siz contructor'ı @Autowired<br>
 işaretlemeseniz bile @Autowired olarak tanımlanır.
+
+Eğitim amaçlı repo.
